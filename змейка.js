@@ -74,10 +74,10 @@ function drawGame() {
 		|| snakeY < 3 * box || snakeY > box * 17)
 		clearInterval(game);
 
-	if(dir == "left") snakeX -= box;
-	if(dir == "right") snakeX += box;
-	if(dir == "up") snakeY -= box;
-	if(dir == "down") snakeY += box;
+	if(dir == "left") snakeX -= 5*box;
+	if(dir == "right") snakeX += 5*box;
+	if(dir == "up") snakeY -= 5*box;
+	if(dir == "down") snakeY += 5*box;
 
 	let newHead = {
 		x: snakeX,
