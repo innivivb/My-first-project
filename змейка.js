@@ -1,3 +1,9 @@
+window.addEventListener("keydown", function(e) {
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
@@ -8,6 +14,7 @@ const foodImg = new Image();
 foodImg.src = "img/food.png";
 
 let box = 32;
+let box_fac = 0.25;
 
 let score = 0;
 
@@ -25,6 +32,7 @@ snake[0] = {
 document.addEventListener("keydown", direction);
 
 let dir;
+let cur_dir;
 
 function direction(event) {
 	if(event.keyCode == 37 && dir != "right")
@@ -41,15 +49,15 @@ function up_click(){
 	if(dir!="down") dir = "up";
 }
 
-function up_click(){
+function left_click(){
 	if(dir!="right") dir = "left";
 }
 
-function up_click(){
+function right_click(){
 	if(dir!="left") dir = "right";
 }
 
-function up_click(){
+function down_click(){
 	if(dir!="up") dir = "down";
 }
 
@@ -70,18 +78,18 @@ function drawGame() {
 		ctx.fillRect(snake[i].x, snake[i].y, box, box);
 	}
 // Если змейка достигла края поля по горизонтали — продолжаем её движение с противоположной строны
-if (snake.x < 0) {
-	snake.x = canvas.width - 2*grid;
+if (snake.x < box*box_fac) {
+	snake.x = canvas.width - grid;
   }
-  else if (snake.x >= canvas.width) {
-	snake.x = grid;
+  else if (snake.x >= canvas.width-box*box_fac) {
+	snake.x = 0;
   }
   // Делаем то же самое для движения по вертикали
-  if (snake.y < 0) {
-	snake.y = canvas.height - 2*grid;
+  if (snake.y < box*box_fac) {
+	snake.y = canvas.height - grid;
   }
-  else if (snake.y >= canvas.height) {
-	snake.y = grid;
+  else if (snake.y >= canvas.height-box*box_fac) {
+	snake.y = 0;
   }
 	ctx.fillStyle = "white";
 	ctx.font = "50px Arial";
@@ -103,10 +111,12 @@ if (snake.x < 0) {
 		|| snakeY < 3 * box || snakeY > box * 17)
 		clearInterval(game);
 
-	if(dir == "left") snakeX -= 5*box;
-	if(dir == "right") snakeX += 5*box;
-	if(dir == "up") snakeY -= 5*box;
-	if(dir == "down") snakeY += 5*box;
+	if(snakeX%box==0 && snakeY%box==0) cur_dir = dir;
+
+	if(cur_dir == "left") snakeX -= box_fac*box;
+	if(cur_dir == "right") snakeX += box_fac*box;
+	if(cur_dir == "up") snakeY -= box_fac*box;
+	if(cur_dir == "down") snakeY += box_fac*box;
 
 	let newHead = {
 		x: snakeX,
@@ -118,4 +128,4 @@ if (snake.x < 0) {
 	snake.unshift(newHead);
 }
 
-let game = setInterval(drawGame, 100);
+let game = setInterval(drawGame, 50);
