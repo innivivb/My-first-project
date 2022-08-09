@@ -1,4 +1,57 @@
 canvas{
     display: block;
     margin: 0 auto;
+
+}
+.up_btn{
+    margin: 5px;
+    align-content: center;
+    background-color: #00ff08; /* Зеленый */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.right_btn{
+    margin: 5px;
+    align-content: center;
+    background-color: #00ff08; /* Зеленый */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+.left_btn{
+    margin: 5px;
+    align-content: center;
+    background-color: #00ff08; /* Зеленый */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+
+}
+.down_btn{
+    margin: 5px;
+    align-content: center;
+    background-color: #00ff08; /* Зеленый */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
 }

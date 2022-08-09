@@ -37,6 +37,22 @@ function direction(event) {
 		dir = "down";
 }
 
+function up_click(){
+	if(dir!="down") dir = "up";
+}
+
+function up_click(){
+	if(dir!="right") dir = "left";
+}
+
+function up_click(){
+	if(dir!="left") dir = "right";
+}
+
+function up_click(){
+	if(dir!="up") dir = "down";
+}
+
 function eatTail(head, arr) {
 	for(let i = 0; i < arr.length; i++) {
 		if(head.x == arr[i].x && head.y == arr[i].y)
@@ -53,7 +69,20 @@ function drawGame() {
 		ctx.fillStyle = i == 0 ? "green" : "red";
 		ctx.fillRect(snake[i].x, snake[i].y, box, box);
 	}
-
+// Если змейка достигла края поля по горизонтали — продолжаем её движение с противоположной строны
+if (snake.x < 0) {
+	snake.x = canvas.width - 2*grid;
+  }
+  else if (snake.x >= canvas.width) {
+	snake.x = grid;
+  }
+  // Делаем то же самое для движения по вертикали
+  if (snake.y < 0) {
+	snake.y = canvas.height - 2*grid;
+  }
+  else if (snake.y >= canvas.height) {
+	snake.y = grid;
+  }
 	ctx.fillStyle = "white";
 	ctx.font = "50px Arial";
 	ctx.fillText(score, box * 2.5, box * 1.7);
